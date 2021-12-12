@@ -90,10 +90,7 @@ namespace ReflectionApp
             var timer = Stopwatch.StartNew();
 
             for (int i = 0; i <= iterations; i++)
-            {
-                _ = Serializer.DeserializeFromCSVToObject(csv);
-                //Console.WriteLine(i);
-            }
+                _ = Serializer.DeserializeFromCSVToObject<PetClass>(csv);
 
             timer.Stop();
             return timer.ElapsedMilliseconds;
@@ -104,10 +101,7 @@ namespace ReflectionApp
             var timer = Stopwatch.StartNew();
 
             for (int i = 0; i <= iterations; i++)
-            {
                 _ = JsonSerializer.Deserialize(json, typeof(T));
-                //Console.WriteLine(i);
-            }
 
             timer.Stop();
             return timer.ElapsedMilliseconds;

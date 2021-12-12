@@ -35,13 +35,9 @@ namespace ReflectionApp
         /// <summary> Deserialize from CSV to object</summary>
         /// <param name="csv">string in CSV format</param>
         /// <returns>object</returns>
-        public static object DeserializeFromCSVToObject(string csv)
+        public static object DeserializeFromCSVToObject<T>(string csv)
         {
-            string assemblyFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ReflectionLib.dll");
-
-            Assembly assembly = Assembly.LoadFrom(assemblyFile);
-            Type objType = assembly.GetType("ReflectionLib.PetClass", true, true);
-
+            Type objType = typeof(T);
             object obj = Activator.CreateInstance(objType);
 
             var lines = csv.Split(LineSeparator);
