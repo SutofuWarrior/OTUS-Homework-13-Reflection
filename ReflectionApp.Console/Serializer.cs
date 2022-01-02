@@ -36,9 +36,10 @@ namespace ReflectionApp
         /// <param name="csv">string in CSV format</param>
         /// <returns>object</returns>
         public static object DeserializeFromCSVToObject<T>(string csv)
+            where T : class, new()
         {
             Type objType = typeof(T);
-            object obj = Activator.CreateInstance(objType);
+            object obj = new T();
 
             var lines = csv.Split(LineSeparator);
             var fields = lines[0].Split(FieldSeparator);
